@@ -116,3 +116,24 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener('click', writePassword);
+
+
+//Three sections of character generators
+//Gets a random special character
+function getRandomSpecialCharacter() {
+return specialCharacters[Math.floor(Math.random() * specialCharacters.length)];
+}
+console.log(getRandomSpecialCharacter());
+
+//Gets a random lower-case character
+function getRandomLowerCase() {
+  return lowerCasedCharacters[Math.floor(Math.random() * lowerCasedCharacters.length)];
+}
+console.log(getRandomLowerCase());
+
+
+//gets a random upper-case character
+function getRandomUpperCase() {
+  return upperCasedCharacters[Math.floor(Math.random() * upperCasedCharacters.length)];
+}
+console.log(getRandomUpperCase());
