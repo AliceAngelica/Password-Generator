@@ -94,119 +94,116 @@ function getPasswordOptions() {
     prompt("How long would you like your password? Enter the number of characters...")
   )
 
-    if(isNaN(length) === true){
+    if(isNaN(length) === true) { //If the user enters a value that is not a number
       alert('Password length must be a number, please enter a number over 10');
       return;
     }
 
-    if(length < 10) {
+    if(length < 10) { //If a value less than 10 characters is entered
       alert('Password length must be 10 characters or more.');
       return;
     }
 
-    if(length > 64) {
-      alert('Password must be below 65 characters in length.');
+    if(length > 64) { //If a value over 64 characters is entered
+      alert('Password must be below 64 characters in length.');
       return;
     }
-
-  let containsSpecialCharacters = confirm(
+    //Prompts for selecting the different types of characters:
+  let containsSpecial = confirm( 
     'Click OK to confirm including special characters in your password.'
   )
 
-  let containsNumericCharacters = confirm(
+  let containsNumeric = confirm(
     'Click OK to confirm including numbers in your password.'
   )
 
-  let containsLowerCharacters = confirm(
+  let containsLower = confirm(
     'Click OK to confirm including lower case letters in your password.'
   )
 
-  let containsUpperCharacters = confirm(
+  let containsUpper = confirm(
     "Click OK to confirm including Upper case letters in your password"
   )
-
-  if(containsLowerCharacters === false &&
-    containsUpperCharacters === false &&
-    containsSpecialCharacters === false &&
-    containsNumericCharacters === false) {
-      alert('At least one character type needs to be selected to generate a password.');
-      return;
+    //Creating an alert for the scenario in which the user does not select a character type
+  if(containsLower === false &&
+  containsUpper === false &&
+  containsSpecial === false &&
+  containsNumeric === false) {
+  alert('At least one character type needs to be selected to generate a password.');
+  return;
   }
 
 
-//
+//Defining the object passwordOptions to contain the selected character types and defined length
 let passwordOptions = {
   length: length,
-  containsUpperCharacters: containsUpperCharacters,
-  containsLowerCharacters: containsLowerCharacters,
-  containsSpecialCharacters: containsSpecialCharacters,
-  containsNumericCharacters: containsNumericCharacters
+  containsUpper: containsUpper,
+  containsLower: containsLower,
+  containsSpecial: containsSpecial,
+  containsNumeric: containsNumeric
 
 }
+
+return passwordOptions;
 }
-
-
-
 
 
 // Function for getting a random element from an array
 function getRandom(arr) {
-let randomIndex = Math.floor(Math.random() * arr.length)
+let randomIndex = Math.floor(Math.random() * arr.length);
 let randomElement = arr[randomIndex];
 return randomElement;
 }
   
-
-
-
-let random = {
-  uppercase: getRandomUpperCase,
-  lowercase: getRandomLowerCase,
-  special: getRandomSpecialCharacter,
-  number: getRandomNumber
-}
-
 // Function to generate password with user input
 function generatePassword() {
   let options = getPasswordOptions();
+  console.log(options);
+  let result = [];
 
-  let result = []
+  let possibleCharacter = [];
 
-  let possibleCharacter = []
+  let guaranteedCharacter = [];
 
-  let guaranteedCharacter = []
+  console.log(possibleCharacter);
+  console.log(guaranteedCharacter);
+
 
   //Concat is used in this section to combine two arrays
-  if(options['containsSpecialCharacters']) {
+  if(options["containsSpecial"]) {
     possibleCharacter = possibleCharacter.concat(specialCharacters);
     guaranteedCharacter.push(getRandom(specialCharacters))
   }
   
-  if(options["containsLowerCharacters"]) {
+  if(options["containsLower"]) {
     possibleCharacter = possibleCharacter.concat(lowerCaseCharacters);
     guaranteedCharacter.push(getRandom(lowerCaseCharacters))
   }
 
-  if(options["containsUpperCharacters"]) {
+  if(options.containsUpper) {
     possibleCharacter = possibleCharacter.concat(upperCaseCharacters);
     guaranteedCharacter.push(getRandom(upperCaseCharacters))
   }
 
-  if(options["containsNumericCharacters"]) {
+  if(options.containsNumeric) {
     possibleCharacter = possibleCharacter.concat(numericCharacters);
     guaranteedCharacter.push(getRandom(numericCharacters))
   }
+  console.log(possibleCharacter);
+  console.log(guaranteedCharacter);
 
+// A Loop was created to combine the selected array items and push them together (randomized) to form the generated password
   for(let index = 0; index < options.length; index++){
-    possibleCharacter = getRandom(possibleCharacter);
-
-    result.push(possibleCharacter);
+    var generate = getRandom(possibleCharacter);
+    console.log(generate);
+    result.push(generate);
   }
+//Logging results
+    console.log(result);
+    return result.join("");
+  
 
 }
-
-
-
 
 // Get references to the #generate element
 var generateBtn = document.querySelector('#generate');
@@ -223,6 +220,10 @@ function writePassword() {
 generateBtn.addEventListener('click', writePassword);
 
 
+
+
+//Unrelated to above code - My first attempt at the challenge using a different method
+/*
 //Four sections of character generators
 
 //Gets a random special character
@@ -249,3 +250,4 @@ function getRandomNumber() {
   return numericCharacters[Math.floor(Math.random() * numericCharacters.length)];
 }
 console.log(getRandomNumber());
+*/
