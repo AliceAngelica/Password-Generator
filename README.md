@@ -21,3 +21,5 @@ Password-Generator is licensed under the MIT license.
 To use the password generator click the link to the deployed webpage, then select "generate password." The user should then follow the prompts by enterting a password length, then by selecting the character types by clicking "OK." To decline specific character types the user should select "cancel." Alternately, you can view the application by opening the files in a text editor program (such as VisualStudio,) or by viewing the console in the Google Chrome browser by selecting "inspect" and "console."
 
 ## Deployed webpage link
+
+https://aliceangelica.github.io/Password-Generator/
